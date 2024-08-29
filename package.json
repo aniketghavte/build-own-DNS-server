@@ -2,11 +2,11 @@
   "name": "dns-server",
   "version": "1.0.0",
   "description": "building dns server from scratch",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "node index.ts",
-    "start": "node src/server.ts",
-    "dev": "nodemon src/server.ts"
+    "test": "node index.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
