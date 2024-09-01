@@ -25,6 +25,8 @@
   "homepage": "https://github.com/aniketghavte/dns-server-form-scratch#readme",
   "dependencies": {
     "@leichtgewicht/ip-codec": "^2.0.5",
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.6.0",
     "nodemon": "^3.1.4"
   },
   "devDependencies": {

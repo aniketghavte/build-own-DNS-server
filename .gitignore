@@ -1,6 +1,9 @@
 node_modules
 .serverless
 
+client
+./Readme.md
+
 ### macOS ###
 # General
 .DS_Store

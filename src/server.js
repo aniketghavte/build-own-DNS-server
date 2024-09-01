@@ -1,5 +1,7 @@
 const dgram = require('node:dgram');
 const server = dgram.createSocket('udp4');
+const connectDB = require("./config/connectDB");
+const Domain = require("./DB/Models/Domain.model");
 
 const { decode, encode } = require('./dnsCore');
 
@@ -7,30 +9,41 @@ server.bind(53, '0.0.0.0');
 
 console.log("Starting DNS server...");
 
-server.on('message', (msg, rinfo) => {
+connectDB();
+
+server.on('message', async (msg, rinfo) => {
   const packet = decode(msg);
-  // console.log("buffer", buffer);
   console.log("packet", packet);
+  try {
+    const domainName = packet.questions[0].name;
+    const domain = await Domain.findOne({ domainName });
 
-  // console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
-  const response = encode({
-    type: 'response',
-    id: packet.id,
-    flags: 0x8180,
-    questions: packet.questions,
-    answers: [{
-      type: 'A',
-      class: 'IN',
-      name: packet.questions[0].name,
-      data: '1.1.1.1',
-    }]
-  })
-
-  server.send(response, rinfo.port, rinfo.address, (err) => {
-    if (err) {
-      console.error(err);
+    if (!domain) {
+      console.error(`Domain ${domainName} not found in database`);
+      return;
     }
-  });
+
+    const response = encode({
+      type: 'response',
+      id: packet.id,
+      flags: 0x8180,
+      questions: packet.questions,
+      answers: [{
+        type: domain.type,
+        class: 'IN',
+        name: domainName,
+        data: domain.value,
+      }]
+    });
+
+    server.send(response, rinfo.port, rinfo.address, (err) => {
+      if (err) {
+        console.error(err);
+      }
+    });
+  } catch (error) {
+    console.error(`Error processing DNS request: ${error}`);
+  }
 });
 
 server.on('error', (err) => {
@@ -42,7 +55,6 @@ server.on('listening', () => {
   const address = server.address();
   console.log(`server listening ${address.address}:${address.port}`);
 });
-
 
 server.on('close', () => {
   console.log('Server closed');
