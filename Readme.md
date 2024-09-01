@@ -4,8 +4,10 @@ This repository contains the code to build a DNS server from scratch. The DNS se
 
 ## Getting Started
 
+### Learn
 If you are a newbie to DNS learn [`what is DNS How it Works`](https://medium.com/@aniketghavte/mongodb-aggregation-pipelines-dbdcac9d3a49)
-
+See the Types of DNS Query [`go through`](https://github.com/aniketghavte/build-own-DNS-server/blob/main/src/types.js)
+See the Classes used in DNS Query [`go through`](https://github.com/aniketghavte/build-own-DNS-server/blob/main/src/classes.js)
 
 ### Prerequisites
 
