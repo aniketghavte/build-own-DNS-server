@@ -1,7 +1,7 @@
 node_modules
 .serverless
 
-client
+.client/node_modules
 
 ### macOS ###
 # General
