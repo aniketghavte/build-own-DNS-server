@@ -4,6 +4,16 @@ This repository contains the code to build a DNS server from scratch. The DNS se
 
 ## Getting Started
 
+### Live Demo
+
+The DNS server is deployed and running on AWS EC2 at:
+http://13.233.151.85:9000/
+
+Here's a demo of the DNS server in action:
+
+![DNS Server Demo](https://raw.githubusercontent.com/aniketghavte/build-own-DNS-server/main/demo.png)
+
+
 ### Learn
 If you are a newbie to DNS learn [`what is DNS How it Works`](https://medium.com/@aniketghavte/mongodb-aggregation-pipelines-dbdcac9d3a49)
 
