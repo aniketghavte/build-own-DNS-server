@@ -9,6 +9,7 @@ RUN apt-get install -y dnsutils
 
 COPY package.json package.json
 COPY package-lock.json package-lock.json
+COPY .env .env
 COPY src src
  
 RUN npm install
